@@ -1,0 +1,65 @@
+mkdir Thub_C_S
+
+cd Thub_C_S
+
+virtualenv Thub_C_S_virtualenv
+
+source Thub_C_S_virtualenv/bin/activate
+
+pip install django djangorestframework
+
+django-admin.py startproject Thub_C_S ~/work/Thub_C_S < creating outside django folder will be helpfull when enabling gunicorn and nginx>
+
+
+add these lines in settings.py
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+
+(Thub_C_S_virtualenv) rajeev@rajeevIoTThub:~/work/Thub_C_S$ python manage.py collectstatic
+
+(Thub_C_S_virtualenv) rajeev@rajeevIoTThub:~/work/Thub_C_S$ python manage.py makemigrations
+
+(Thub_C_S_virtualenv) rajeev@rajeevIoTThub:~/work/Thub_C_S$ python manage.py migrate
+
+(Thub_C_S_virtualenv) rajeev@rajeevIoTThub:~/work/Thub_C_S$ python manage.py createsuperuser
+Username (leave blank to use 'rajeev'): thub_admin
+Email address: thub_admin@aec.edu.in
+Password: thub@123
+
+
+
+Now have to create an application
+
+(Thub_C_S_virtualenv) rajeev@rajeevIoTThub:~/work/Thub_C_S$ python manage.py startapp Thub_Attendance
+
+Now have to create Tables.
+
+
+-------- to sync the tables ---- 
+This line actually saved helped me for not getting the error the "there is no such table" <remember this line> 
+ python manage.py migrate --run-syncdb
+
+
+
+to store image files use
+
+pip install Pillow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
